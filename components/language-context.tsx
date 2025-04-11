@@ -6,64 +6,47 @@ type Language = "en" | "pt"
 
 const translations = {
   en: {
-    // Navbar
     "nav.home": "Home",
     "nav.about": "About",
     "nav.techStack": "Tech Stack",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
 
-    // Home
-    "home.hello": "Hello, I'm John Doe",
-    "home.description": "A DevOps/Cloud Engineer passionate about automation and scalable infrastructure.",
+    "home.hello": "Hello, I'm Rodrigo",
+    "home.description": "I'm passionate about learning and solving problems. I’m especially interested in how cloud, automation, and best practices can turn ideas into real solutions.",
     "home.downloadCV": "Download CV",
     "home.contactMe": "Contact Me",
 
-    // About
     "about.title": "About Me",
     "about.subtitle": "My background and experience",
     "about.p1":
-      "I'm a DevOps/Cloud Engineer with over 5 years of experience in designing, implementing, and managing cloud infrastructure. I specialize in automating deployment pipelines, optimizing infrastructure costs, and ensuring high availability and scalability of systems.",
+      "I'm currently a QA intern at Thomson Reuters Brazil, where I plan, model, and execute tests, as well as automate processes and tests.",
     "about.p2":
-      "My journey began as a System Administrator, where I developed a strong foundation in Linux systems and networking. As cloud technologies evolved, I transitioned into DevOps practices, embracing Infrastructure as Code and CI/CD methodologies.",
+      "My tech journey began in 2021 during the pandemic, when I started studying Information Systems at UFJF. That’s when I discovered programming and found my passion in the field, developing a strong interest in analysis and problem-solving.",
     "about.p3":
-      "I'm passionate about solving complex infrastructure challenges and helping teams deliver software more efficiently through automation and best practices.",
+      "I've been exploring the Cloud and DevOps ecosystem, learning about Infrastructure as Code, container orchestration, monitoring, and automation best practices. My current goal is to work professionally in cloud infrastructure, especially in DevOps or SRE roles.",
 
-    // Tech Stack
-    "techStack.title": "Tech Stack",
-    "techStack.subtitle": "Technologies and tools I work with",
+    "techStack.title": "Skills",
+    "techStack.subtitle": "Tools and technologies I've been studying and practicing",
 
-    // Projects
     "projects.title": "Projects",
-    "projects.subtitle": "Some of my recent work",
-    "projects.project1.title": "Cloud Migration Project",
-    "projects.project1.description": "Migrated on-premises infrastructure to AWS cloud",
+    "projects.subtitle": "Some of my recent projects",
+    "projects.project1.title": "PowerBI Automation",
+    "projects.project1.description": "Automated Power BI reports using Power Automate for recurring delivery in Teams",
     "projects.project1.content":
-      "Led the migration of a legacy application from on-premises data centers to AWS, implementing Infrastructure as Code with Terraform and setting up CI/CD pipelines with GitHub Actions. Reduced infrastructure costs by 40% and improved deployment time by 70%.",
-    "projects.project2.title": "Kubernetes Cluster Optimization",
-    "projects.project2.description": "Optimized Kubernetes infrastructure for performance and cost",
-    "projects.project2.content":
-      "Redesigned and optimized a production Kubernetes cluster, implementing auto-scaling, resource limits, and cost allocation tagging. Set up comprehensive monitoring with Prometheus and Grafana. Reduced monthly cloud costs by 35% while improving application performance.",
-    "projects.project3.title": "CI/CD Pipeline Automation",
-    "projects.project3.description": "Built automated deployment pipelines for microservices",
-    "projects.project3.content":
-      "Designed and implemented CI/CD pipelines for a microservices architecture using Jenkins and Docker. Automated testing, building, and deployment processes, reducing deployment time from hours to minutes and enabling multiple daily releases with confidence.",
-    "projects.project4.title": "Infrastructure Monitoring Solution",
-    "projects.project4.description": "Implemented comprehensive monitoring and alerting",
-    "projects.project4.content":
-      "Developed a comprehensive monitoring and alerting solution using Prometheus, Grafana, and Alertmanager. Created custom dashboards for different teams and implemented intelligent alerting with PagerDuty integration, significantly reducing mean time to detection for incidents.",
+      "I created an automation with Power Automate to streamline the process of sharing Power BI reports. Previously, a team member had to manually access Power BI every hour, update the data, take screenshots, and send them to the Teams channel. The automation now performs this flow automatically, including percentage calculations and conditional formatting for easier metric visualization. This project eliminated a repetitive task, freed up the team’s time, and ensured consistent, timely updates throughout the day.",
+    "projects.project1.tags": ["Power Automate", "Power BI", "Automation"],
 
-    // Contact
-    "contact.title": "Contact Me",
+    "contact.title": "Contact",
     "contact.subtitle": "Get in touch for opportunities or collaborations",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.message": "Message",
     "contact.send": "Send Message",
     "contact.personalInfo": "Personal Information",
-    "contact.emailAddress": "contact@example.com",
-    "contact.phone": "+1 (555) 123-4567",
-    "contact.location": "San Francisco, CA",
+    "contact.emailAddress": "devrodrigosoares@gmail.com",
+    "contact.phone": "+55 (24) 99879-5119",
+    "contact.location": "Juiz de Fora, MG",
 
     // Footer
     "footer.rights": "All rights reserved.",
@@ -77,8 +60,8 @@ const translations = {
     "nav.contact": "Contato",
 
     // Home
-    "home.hello": "Olá, sou John Doe",
-    "home.description": "Engenheiro DevOps/Cloud apaixonado por automação e infraestrutura escalável.",
+    "home.hello": "Prazer, me chamo Rodrigo.",
+    "home.description": "Apaixonado por aprender e resolver problemas. Interessado em como a nuvem, a automação e boas práticas podem transformar ideias em soluções reais.",
     "home.downloadCV": "Baixar CV",
     "home.contactMe": "Contate-me",
 
@@ -86,35 +69,24 @@ const translations = {
     "about.title": "Sobre Mim",
     "about.subtitle": "Minha formação e experiência",
     "about.p1":
-      "Sou um Engenheiro DevOps/Cloud com mais de 5 anos de experiência em projetar, implementar e gerenciar infraestrutura em nuvem. Sou especializado em automatizar pipelines de implantação, otimizar custos de infraestrutura e garantir alta disponibilidade e escalabilidade de sistemas.",
+      "Atualmente, sou estagiário de QA na Thomson Reuters Brasil, onde atuo no planejamento, modelagem e execução de testes, além da automação de processos e testes automatizados.",
     "about.p2":
-      "Minha jornada começou como Administrador de Sistemas, onde desenvolvi uma base sólida em sistemas Linux e redes. Com a evolução das tecnologias em nuvem, fiz a transição para práticas DevOps, adotando Infraestrutura como Código e metodologias CI/CD.",
+      "Minha trajetória na tecnologia começou em 2021, durante a pandemia, quando iniciei o curso de Sistemas de Informação na UFJF. Foi nesse período que descobri a programação e me identifiquei com a área, desenvolvendo uma forte afinidade por análise e resolução de problemas.",
     "about.p3":
-      "Sou apaixonado por resolver desafios complexos de infraestrutura e ajudar equipes a entregar software de forma mais eficiente por meio de automação e melhores práticas.",
+      "Tenho explorado o ecossistema de Cloud e DevOps, aprendendo sobre infraestrutura como código, orquestração de containers, monitoramento e boas práticas de automação. Meu objetivo atual é atuar profissionalmente na área de infraestrutura em nuvem, especialmente em funções voltadas para engenharia DevOps ou SRE.",
 
     // Tech Stack
-    "techStack.title": "Tecnologias",
-    "techStack.subtitle": "Tecnologias e ferramentas com as quais trabalho",
+    "techStack.title": "Habilidades",
+    "techStack.subtitle": "Ferramentas e tecnologias que venho estudando e praticando",
 
     // Projects
     "projects.title": "Projetos",
-    "projects.subtitle": "Alguns dos meus trabalhos recentes",
-    "projects.project1.title": "Projeto de Migração para Nuvem",
-    "projects.project1.description": "Migração de infraestrutura local para AWS",
+    "projects.subtitle": "Alguns dos meus projetos recentes",
+    "projects.project1.title": "Automação PowerBI",
+    "projects.project1.description": "Automatizei relatórios do Power BI com Power Automate para envio recorrente no Teams",
     "projects.project1.content":
-      "Liderei a migração de uma aplicação legada de data centers locais para AWS, implementando Infraestrutura como Código com Terraform e configurando pipelines CI/CD com GitHub Actions. Reduzi os custos de infraestrutura em 40% e melhorei o tempo de implantação em 70%.",
-    "projects.project2.title": "Otimização de Cluster Kubernetes",
-    "projects.project2.description": "Otimizei infraestrutura Kubernetes para desempenho e custo",
-    "projects.project2.content":
-      "Reprojetei e otimizei um cluster Kubernetes de produção, implementando auto-scaling, limites de recursos e marcação de alocação de custos. Configurei monitoramento abrangente com Prometheus e Grafana. Reduzi os custos mensais de nuvem em 35% enquanto melhorava o desempenho da aplicação.",
-    "projects.project3.title": "Automação de Pipeline CI/CD",
-    "projects.project3.description": "Construí pipelines de implantação automatizados para microsserviços",
-    "projects.project3.content":
-      "Projetei e implementei pipelines CI/CD para uma arquitetura de microsserviços usando Jenkins e Docker. Automatizei processos de teste, construção e implantação, reduzindo o tempo de implantação de horas para minutos e permitindo várias liberações diárias com confiança.",
-    "projects.project4.title": "Solução de Monitoramento de Infraestrutura",
-    "projects.project4.description": "Implementei monitoramento e alertas abrangentes",
-    "projects.project4.content":
-      "Desenvolvi uma solução abrangente de monitoramento e alertas usando Prometheus, Grafana e Alertmanager. Criei painéis personalizados para diferentes equipes e implementei alertas inteligentes com integração PagerDuty, reduzindo significativamente o tempo médio de detecção de incidentes.",
+      "Desenvolvi uma automação no Power Automate para otimizar o processo de compartilhamento de relatórios do Power BI. Anteriormente, era necessário que um colaborador acessasse manualmente o Power BI a cada hora, atualizasse os dados, tirasse capturas de tela e enviasse ao canal do Teams. A automação passou a executar esse fluxo automaticamente, incluindo cálculos de porcentagem e aplicação de cores condicionais para facilitar a visualização das métricas. O projeto eliminou uma tarefa repetitiva, liberando tempo da equipe e garantindo atualizações consistentes e pontuais ao longo do dia.",
+    "projects.project1.tags": ["Power Automate", "Power BI", "Automação"],
 
     // Contact
     "contact.title": "Contato",
@@ -124,9 +96,9 @@ const translations = {
     "contact.message": "Mensagem",
     "contact.send": "Enviar Mensagem",
     "contact.personalInfo": "Informações Pessoais",
-    "contact.emailAddress": "contato@exemplo.com",
-    "contact.phone": "+55 (11) 98765-4321",
-    "contact.location": "São Paulo, SP",
+    "contact.emailAddress": "devrodrigosoares@gmail.com",
+    "contact.phone": "+55 (24) 99879-5119",
+    "contact.location": "JUiz de Fora, MG",
 
     // Footer
     "footer.rights": "Todos os direitos reservados.",
@@ -148,8 +120,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setLanguage((prev) => (prev === "en" ? "pt" : "en"))
   }
 
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations["en"]] || key
+  const t = (key: string): any => {
+    const value = translations[language][key as keyof typeof translations["en"]]
+    return value ?? key
   }
 
   return (

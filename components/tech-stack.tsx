@@ -10,19 +10,15 @@ export default function TechStack() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-  const technologies = [
-    "AWS",
+  const skills = [
     "Docker",
-    "Kubernetes",
-    "Terraform",
-    "Jenkins",
-    "GitHub Actions",
     "Ansible",
-    "Prometheus",
-    "Grafana",
     "Linux",
     "Python",
     "Bash",
+    "Power Automate",
+    "Azure Pipelines",
+    "Datadog",
   ]
 
   return (
@@ -42,7 +38,7 @@ export default function TechStack() {
           <p className="text-gray-500 dark:text-gray-400 md:text-xl">{t("techStack.subtitle")}</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8">
-          {technologies.map((tech, index) => (
+          {skills.map((tech, index) => (
             <motion.div
               key={tech}
               initial={{ opacity: 0, y: 20 }}

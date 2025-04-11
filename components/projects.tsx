@@ -17,25 +17,7 @@ export default function Projects() {
       title: t("projects.project1.title"),
       description: t("projects.project1.description"),
       content: t("projects.project1.content"),
-      tags: ["AWS", "Terraform", "GitHub Actions"],
-    },
-    {
-      title: t("projects.project2.title"),
-      description: t("projects.project2.description"),
-      content: t("projects.project2.content"),
-      tags: ["Kubernetes", "Prometheus", "Grafana"],
-    },
-    {
-      title: t("projects.project3.title"),
-      description: t("projects.project3.description"),
-      content: t("projects.project3.content"),
-      tags: ["Jenkins", "Docker", "Microservices"],
-    },
-    {
-      title: t("projects.project4.title"),
-      description: t("projects.project4.description"),
-      content: t("projects.project4.content"),
-      tags: ["Prometheus", "Grafana", "Alertmanager"],
+      tags: t("projects.project1.tags") as unknown as string[]
     },
   ]
 

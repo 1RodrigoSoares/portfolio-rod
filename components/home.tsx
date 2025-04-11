@@ -1,7 +1,9 @@
 "use client"
 
 import { useLanguage } from "@/components/language-context"
-import { Download, Github, Linkedin, Mail } from "lucide-react"
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload} from "react-icons/fa"
+import { IoCloudDownloadOutline } from "react-icons/io5";
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -46,7 +48,7 @@ export default function Home() {
               className="rounded-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800"
               onClick={handleDownloadCV}
             >
-              <Download className="mr-2 h-4 w-4" />
+              <IoCloudDownloadOutline className="mr-2 h-4 w-4" />
               {t("home.downloadCV")}
             </Button>
             <Button
@@ -68,19 +70,19 @@ export default function Home() {
           <div className="flex gap-4 justify-center lg:justify-start">
             <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <Github className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
             <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <Linkedin className="h-5 w-5" />
+                <FaLinkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Button>
             </Link>
             <Link href="mailto:contact@example.com">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <Mail className="h-5 w-5" />
+                <FaEnvelope className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Button>
             </Link>
