@@ -12,7 +12,7 @@ export default function Home() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a")
-    link.href = "/john-doe-cv.pdf" // Replace with actual path
+    link.href = "/john-doe-cv.pdf"
     link.download = "john-doe-cv.pdf"
     document.body.appendChild(link)
     link.click()
