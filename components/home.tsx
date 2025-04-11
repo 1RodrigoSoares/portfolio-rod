@@ -96,10 +96,10 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <div className="relative aspect-square w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] rounded-full border border-blue-100 dark:border-blue-800 overflow-hidden">
+          <div className="relative aspect-square w-[280px] sm:w-[280px] md:w-[330px] lg:w-[330px] rounded-full border border-blue-100 dark:border-blue-800 overflow-hidden">
             <Image
-              src="/placeholder.svg?height=400&width=400"
-              alt="John Doe"
+              src="/rodrigo.jpeg?height=400&width=400"
+              alt="Rodrigo Assis"
               fill
               className="object-cover"
               priority
