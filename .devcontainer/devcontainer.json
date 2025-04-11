@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-dev",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "portfolio",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/usr/bin/bash"
+          }
+        }
+      }
+    }
+  },
+  "forwardPorts": [3000],
+  "postCreateCommand": "git config --global --add safe.directory /app"
+}
