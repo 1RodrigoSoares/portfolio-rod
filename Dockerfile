@@ -10,6 +10,8 @@ COPY package*.json ./
 # Instala as dependências
 RUN npm install
 
+COPY . /app/
+
 # Expõe a porta usada pelo Next.js
 EXPOSE 3000
 
