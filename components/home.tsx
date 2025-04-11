@@ -10,12 +10,14 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, language} = useLanguage()
 
   const handleDownloadCV = () => {
+    const fileName = language === "en" ? "CV - Rodrigo - English.pdf" : "CV - Rodrigo - Portugues.pdf"
+  
     const link = document.createElement("a")
-    link.href = "/john-doe-cv.pdf"
-    link.download = "john-doe-cv.pdf"
+    link.href = `/${fileName}`
+    link.download = fileName
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -29,7 +31,7 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-12 lg:gap-8">
+      <div className="flex flex-col lg:flex-row lg:justify-center lg:items-start gap-12 lg:gap-8">
         {/* Text Content */}
         <motion.div
           className="space-y-6 max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
@@ -38,7 +40,7 @@ export default function Home() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-gradient-to-r from-blue-500 to-blue-800 bg-clip-text text-transparent">
               {t("home.hello")}
             </h1>
             <p className="text-gray-500 dark:text-gray-400 md:text-xl">{t("home.description")}</p>
@@ -68,19 +70,19 @@ export default function Home() {
             </Button>
           </div>
           <div className="flex gap-4 justify-center lg:justify-start">
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/1RodrigoSoares" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
                 <FaGithub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://www.linkedin.com/in/1rodrigoassis/" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
                 <FaLinkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Button>
             </Link>
-            <Link href="mailto:contact@example.com">
+            <Link href="mailto:devrodrigosoares@gmail.com">
               <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
                 <FaEnvelope className="h-5 w-5" />
                 <span className="sr-only">Email</span>
@@ -89,14 +91,13 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Profile Image */}
         <motion.div
           className="mx-auto lg:mx-0 lg:self-start"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <div className="relative aspect-square w-[280px] sm:w-[280px] md:w-[330px] lg:w-[330px] rounded-full border border-blue-100 dark:border-blue-800 overflow-hidden">
+          <div className="relative aspect-square w-[300px] rounded-full border border-blue-100 dark:border-blue-800 overflow-hidden">
             <Image
               src="/rodrigo.jpeg?height=400&width=400"
               alt="Rodrigo Assis"

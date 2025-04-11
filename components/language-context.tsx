@@ -12,7 +12,7 @@ const translations = {
     "nav.projects": "Projects",
     "nav.contact": "Contact",
 
-    "home.hello": "Hello, I'm Rodrigo",
+    "home.hello": "Hello guys, I'm Rodrigo",
     "home.description": "I'm passionate about learning and solving problems. I’m especially interested in how cloud, automation, and best practices can turn ideas into real solutions.",
     "home.downloadCV": "Download CV",
     "home.contactMe": "Contact Me",

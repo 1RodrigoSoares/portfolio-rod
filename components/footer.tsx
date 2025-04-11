@@ -17,19 +17,19 @@ export default function Footer() {
           © {new Date().getFullYear()} Rodrigo Assis. {t("footer.rights")}
         </p>
         <div className="flex gap-4">
-          <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <Link href="https://github.com/1RodrigoSoares" target="_blank" rel="noopener noreferrer">
             <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
               <FaGithub className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </Button>
           </Link>
-          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.linkedin.com/in/1rodrigoassis/" target="_blank" rel="noopener noreferrer">
             <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
               <FaLinkedin className="h-4 w-4" />
               <span className="sr-only">LinkedIn</span>
             </Button>
           </Link>
-          <Link href="mailto:contact@example.com">
+          <Link href="mailto:devrodrigosoares@gmail.com">
             <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
               <FaEnvelope className="h-4 w-4" />
               <span className="sr-only">Email</span>
