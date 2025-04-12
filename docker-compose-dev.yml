@@ -1,9 +1,7 @@
-version: '1.0'
-
 services:
   portfolio:
-    build:
+    build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"

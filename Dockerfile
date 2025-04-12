@@ -1,19 +1,16 @@
-# Imagem base com Node
 FROM node:18
 
-# Cria a pasta de trabalho
 WORKDIR /app
 
-# Copia os arquivos de dependência
 COPY package*.json ./
 
-# Instala as dependências
 RUN npm install
 
-COPY . /app
+COPY . .
 
-# Expõe a porta usada pelo Next.js
+RUN npm run build
+
 EXPOSE 3000
 
-# Comando padrão ao rodar o container
-CMD ["npm", "run", "dev"]
+# Inicia o Next.js em modo produção
+CMD ["npm", "start"]

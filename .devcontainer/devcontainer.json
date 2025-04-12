@@ -1,6 +1,6 @@
 {
   "name": "portfolio-dev",
-  "dockerComposeFile": "../docker-compose.yml",
+  "dockerComposeFile": "../docker-compose-dev.yml",
   "service": "portfolio",
   "workspaceFolder": "/app",
   "customizations": {
