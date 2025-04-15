@@ -1,16 +1,16 @@
 import { datadogRum } from '@datadog/browser-rum'
 
 export function initDatadog() {
-  if (typeof window === 'undefined')  
-  {
-    console.error('Datadog RUM can only be initialized in the browser')
-    return
-  }
+  // if (typeof window === 'undefined')  
+  // {
+  //   console.error('Datadog RUM can only be initialized in the browser')
+  //   return
+  // }
 
-  if (!process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN || !process.env.NEXT_PUBLIC_DATADOG_APP_ID) {
-    console.error('Datadog client token or app ID is not defined')
-    return
-  }
+  // if (!process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN || !process.env.NEXT_PUBLIC_DATADOG_APP_ID) {
+  //   console.error('Datadog client token or app ID is not defined')
+  //   return
+  // }
 
   console.log('Initializing Datadog RUM...')
 
