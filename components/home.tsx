@@ -23,6 +23,7 @@ export default function Home() {
     document.body.removeChild(link)
   }
 
+  console.log("Rendering Home component")
   return (
     <motion.section
       id="home"
