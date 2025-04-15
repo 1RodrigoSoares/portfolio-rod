@@ -19,6 +19,7 @@ jobs:
           image: 1rodrigoassis/portfolio
           registry: docker.io
           dockerfile: Dockerfile
+          buildContext: . 
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: latest
