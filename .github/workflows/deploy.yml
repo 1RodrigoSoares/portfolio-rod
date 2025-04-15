@@ -27,9 +27,14 @@ jobs:
       - name: Deploy to EC2
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+          
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@${{ secrets.SSH_HOST_IP }} '
+
             docker pull 1rodrigoassis/portfolio:${{ github.sha }}
             docker stop portfolio || true
             docker rm portfolio || true
+
             docker run -d --restart unless-stopped --name portfolio -p 3000:3000 1rodrigoassis/portfolio:${{ github.sha }}
+
+            docker system prune -af --volumes
           '
