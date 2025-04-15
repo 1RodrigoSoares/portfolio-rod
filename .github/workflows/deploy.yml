@@ -22,14 +22,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: latest
+          buildArgs: |
+            NEXT_PUBLIC_DATADOG_APP_ID=${{ secrets.NEXT_PUBLIC_DATADOG_APP_ID }}
+            NEXT_PUBLIC_DATADOG_CLIENT_TOKEN=${{ secrets.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN }}
 
       - name: Deploy to EC2
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOST_IP: ${{ secrets.SSH_HOST_IP }}
           USER_NAME: ${{ secrets.USER_NAME }}
-          NEXT_PUBLIC_DATADOG_APP_ID: ${{ secrets.NEXT_PUBLIC_DATADOG_APP_ID }}
-          NEXT_PUBLIC_DATADOG_CLIENT_TOKEN: ${{ secrets.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN }}
 
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
@@ -41,7 +42,5 @@ jobs:
             docker rm portfolio || true
 
             docker run -d --restart unless-stopped --name portfolio -p 3000:3000 \
-              -e NEXT_PUBLIC_DATADOG_APP_ID=${NEXT_PUBLIC_DATADOG_APP_ID} \
-              -e NEXT_PUBLIC_DATADOG_CLIENT_TOKEN=${NEXT_PUBLIC_DATADOG_CLIENT_TOKEN} \
               1rodrigoassis/portfolio:latest
           '
