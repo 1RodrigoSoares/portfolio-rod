@@ -19,27 +19,22 @@ jobs:
           image: 1rodrigoassis/portfolio
           registry: docker.io
           dockerfile: Dockerfile
-          buildContext: . 
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: latest
-          buildArgs: NEXT_PUBLIC_DATADOG_APP_ID=${{ secrets.NEXT_PUBLIC_DATADOG_APP_ID }}, NEXT_PUBLIC_DATADOG_CLIENT_TOKEN=${{ secrets.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN }}
+          tags: latest, ${{ github.sha }}
+          buildArgs: NEXT_PUBLIC_DATADOG_APP_ID=${{ secrets.NEXT_PUBLIC_DATADOG_APP_ID }},NEXT_PUBLIC_DATADOG_CLIENT_TOKEN=${{ secrets.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN }}
 
       - name: Deploy to EC2
-        env:
-          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST_IP: ${{ secrets.SSH_HOST_IP }}
-          USER_NAME: ${{ secrets.USER_NAME }}
-
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+          
+          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@${{ secrets.SSH_HOST_IP }} '
 
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_IP} '
-            docker pull 1rodrigoassis/portfolio:latest
-
+            docker pull 1rodrigoassis/portfolio:${{ github.sha }}
             docker stop portfolio || true
             docker rm portfolio || true
 
-            docker run -d --restart unless-stopped --name portfolio -p 3000:3000 \
-              1rodrigoassis/portfolio:latest
+            docker run -d --restart unless-stopped --name portfolio -p 3000:3000 1rodrigoassis/portfolio:${{ github.sha }}
+
+            docker system prune -af --volumes
           '
