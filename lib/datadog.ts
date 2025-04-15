@@ -2,7 +2,6 @@ import { datadogRum } from '@datadog/browser-rum'
 import { reactPlugin } from '@datadog/browser-rum-react'
 
 export function initDatadog() {
-  console.log('Initializing Datadog RUM...')
   if (typeof window === 'undefined')  
   {
     console.error('Datadog RUM can only be initialized in the browser')
@@ -19,14 +18,9 @@ export function initDatadog() {
     clientToken: process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!,
     site: 'us5.datadoghq.com',
     service: 'portfolio',
-    env: 'prod',
+    env: 'nonprod',
     sessionSampleRate: 100,
-    sessionReplaySampleRate: 10,
+    sessionReplaySampleRate: 20,
     defaultPrivacyLevel: 'mask-user-input',
-    plugins: [reactPlugin({ router: true })],
   })
-  
-  console.log('Client Token:', process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN)
-  console.log('App ID:', process.env.NEXT_PUBLIC_DATADOG_APP_ID)
-  console.log('Datadog RUM initialized')
 }
