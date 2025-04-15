@@ -8,8 +8,14 @@ import TechStack from "@/components/tech-stack"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { useEffect } from "react"
+import { initDatadog } from "@/lib/datadog"
 
 export default function Portfolio() {
+  useEffect(() => {
+    initDatadog()
+  }, [])
+
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -29,6 +35,6 @@ export default function Portfolio() {
         </main>
         <Footer />
       </div>
-      </LanguageProvider>
+    </LanguageProvider>
   )
 }
