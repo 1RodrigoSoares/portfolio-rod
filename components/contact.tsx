@@ -1,19 +1,56 @@
-"use client"
-
+import { useState } from "react"
 import { useLanguage } from "@/components/language-context"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import emailjs from "@emailjs/browser" 
+import { Mail, MapPin, Phone } from "lucide-react"
 
 export default function Contact() {
   const { t } = useLanguage()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
+
+  const [sending, setSending] = useState(false)
+  const [status, setStatus] = useState<string | null>(null)
+
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSending(true)
+  
+    emailjs
+      .sendForm(
+        "service_af1ko3j",
+        "template_6krf10y",
+        e.target as HTMLFormElement, 
+        "awhNUkFEpRXoMzPip" 
+      )
+      .then(
+        (response) => {
+          setSending(false)
+          setStatus("Email sent successfully!")
+        },
+        (error) => {
+          setSending(false)
+          setStatus("Failed to send email, please try again.")
+        }
+      )
+  }
 
   return (
     <motion.section
@@ -41,7 +78,7 @@ export default function Contact() {
           >
             <Card className="overflow-hidden border-blue-100 dark:border-blue-800">
               <CardContent className="p-6">
-                <form className="grid gap-4">
+                <form onSubmit={handleSubmit} className="grid gap-4">
                   <div className="grid gap-2">
                     <label
                       htmlFor="name"
@@ -49,7 +86,14 @@ export default function Contact() {
                     >
                       {t("contact.name")}
                     </label>
-                    <Input id="name" placeholder={t("contact.name")} className="focus-visible:ring-blue-500" />
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder={t("contact.name")}
+                      className="focus-visible:ring-blue-500"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <label
@@ -60,7 +104,10 @@ export default function Contact() {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder={t("contact.email")}
                       className="focus-visible:ring-blue-500"
                     />
@@ -74,6 +121,9 @@ export default function Contact() {
                     </label>
                     <Textarea
                       id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder={t("contact.message")}
                       className="min-h-32 focus-visible:ring-blue-500"
                     />
@@ -81,15 +131,20 @@ export default function Contact() {
                   <Button
                     type="submit"
                     className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800"
+                    disabled={sending}
                   >
-                    {t("contact.send")}
+                    {sending ? "Sending..." : t("contact.send")}
                   </Button>
                 </form>
+                {status && (
+                  <div className={`mt-4 text-center ${status.includes("successfully") ? 'text-green-600' : 'text-red-600'}`}>
+                    {status}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* Personal Information */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}

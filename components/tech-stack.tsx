@@ -57,7 +57,7 @@ export default function TechStack() {
 
 function TechItem({ name }: { name: string }) {
   return (
-    <div className="flex flex-col items-center justify-between gap-2 p-4 border rounded-lg hover:shadow-md transition-shadow hover:border-blue-500 bg-white dark:bg-gray-800 w-[160px] ">
+    <div className="flex flex-col items-center justify-between gap-2 p-4 border rounded-lg hover:shadow-md transition-shadow hover:border-blue-500 bg-white dark:bg-gray-800 w-[120px] h-[130px] md:w-[160px] md:h-auto">
       <div className="h-12 w-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800">
         <span className="text-blue-700 dark:text-blue-300 text-xl font-bold">{name.charAt(0)}</span>
       </div>
