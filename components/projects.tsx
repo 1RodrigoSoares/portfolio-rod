@@ -15,9 +15,13 @@ export default function Projects() {
   const projects = [
     {
       title: t("projects.project1.title"),
-      description: t("projects.project1.description"),
       content: t("projects.project1.content"),
       tags: t("projects.project1.tags") as unknown as string[]
+    },
+    {
+      title: t("projects.project2.title"),
+      content: t("projects.project2.content"),
+      tags: t("projects.project2.tags") as unknown as string[]
     },
   ]
 
@@ -50,10 +54,13 @@ export default function Projects() {
                   <CardTitle className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                     {project.title}
                   </CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{project.content}</p>
+                <CardContent className="space-y-2">
+                  {project.content.split("\n\n").map((paragraph, i) => (
+                    <p key={i} className="text-sm text-gray-500 dark:text-gray-400">
+                      {paragraph}
+                    </p>
+                  ))}
                 </CardContent>
                 <CardFooter className="flex gap-2 flex-wrap">
                   {project.tags.map((tag) => (

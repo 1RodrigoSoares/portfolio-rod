@@ -12,13 +12,14 @@ export default function TechStack() {
 
   const skills = [
     "Docker",
-    "Ansible",
+    "AWS",
     "Linux",
     "Python",
     "Bash",
     "Power Automate",
     "Azure Pipelines",
     "Datadog",
+    "GitHub Actions",
   ]
 
   return (
