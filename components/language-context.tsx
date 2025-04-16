@@ -35,9 +35,11 @@ const translations = {
     "projects.project1.content":
       "I created an automation with Power Automate to streamline the process of sharing Power BI reports. Previously, a team member had to manually access Power BI every hour, update the data, take screenshots, and send them to the Teams channel. \n\n The automation now performs this flow automatically, including percentage calculations and conditional formatting for easier metric visualization. This project eliminated a repetitive task, freed up the team’s time, and ensured consistent, timely updates throughout the day.",
     "projects.project1.tags": ["Power Automate", "Power BI", "Automation"],
+    "projects.project1.type": "Company project",
     "projects.project2.title": "Web Portfolio",
     "projects.project2.content": "I built a personal portfolio to introduce myself, showcase my projects, and experiment with modern development tools and DevOps practices. The application was developed using Next.js, with support from Vercel’s V0 tool to speed up prototyping.\n\nI used Docker to set up the local environment and create the application image. The deployment was done on an AWS EC2 instance, where the site runs inside a container.\n\nI automated the entire CI/CD process with GitHub Actions: on every push to the main branch, a new build is generated, a Docker image is created, pushed to Docker Hub, and the application is updated automatically via SSH on the EC2 instance.\n\nI also implemented a secure HTTPS connection using SSL/TLS certificates, with Certbot and Nginx. Nginx acts as an edge server, handling HTTPS requests on ports 80 and 443, ensuring secure and encrypted communication between users and the server. It's also configured as a reverse proxy, forwarding external traffic to port 3000 on the server, which is mapped to port 3000 of the Docker container where the application is actually running.",
     "projects.project2.tags": ["Docker", "GitHub Actions", "AWS EC2", "Nginx", "CI/CD"],
+    "projects.project2.type": "Personal project",
 
     "contact.title": "Contact",
     "contact.subtitle": "Get in touch for opportunities or collaborations",
@@ -88,9 +90,12 @@ const translations = {
     "projects.project1.content":
       "Desenvolvi uma automação no Power Automate para otimizar o processo de compartilhamento de relatórios do Power BI. Anteriormente, era necessário que um colaborador acessasse manualmente o Power BI a cada hora, atualizasse os dados, tirasse capturas de tela e enviasse ao canal do Teams. \n\n A automação passou a executar esse fluxo automaticamente, incluindo cálculos de porcentagem e aplicação de cores condicionais para facilitar a visualização das métricas. O projeto eliminou uma tarefa repetitiva, liberando tempo da equipe e garantindo atualizações consistentes e pontuais ao longo do dia.",
     "projects.project1.tags": ["Power Automate", "Power BI", "Automação"],
+    "projects.project1.type": "Projeto Corporativo",
+
     "projects.project2.title": "Portfólio Web",
     "projects.project2.content": "Criei um portfólio pessoal com o objetivo de me apresentar, mostrar meus projetos e, ao mesmo tempo, explorar ferramentas modernas de desenvolvimento e práticas DevOps. A aplicação foi desenvolvida em Next.js, com o suporte da ferramenta V0, da Vercel, para acelerar a prototipação.\n\nUtilizei Docker para montar o ambiente local e gerar a imagem da aplicação. O deploy foi realizado em uma instância EC2 da AWS, onde o site roda dentro de um container. \n\n Automatizei todo o processo de integração e entrega contínua com GitHub Actions: a cada push na branch main, é gerado um novo build, criada uma imagem Docker, enviada ao Docker Hub, e a aplicação é atualizada automaticamente via SSH na instância EC2.\n\nImplementei ainda uma conexão HTTPS segura com certificado SSL/TLS, usando a biblioteca Certbot em conjunto com o Nginx. O Nginx atua como servidor de borda, validando as conexões HTTPS nas portas 80 e 443, garantindo uma comunicação segura e criptografada entre os usuários e o servidor. Ele também está configurado como proxy reverso, redirecionando o tráfego externo para a porta 3000 do servidor, que está mapeada para a porta 3000 do container Docker onde a aplicação efetivamente roda.",
     "projects.project2.tags": ["Docker", "GitHub Actions", "AWS EC2", "Nginx", "CI/CD"],
+    "projects.project2.type": "Projeto pessoal",
 
 
     // Contact

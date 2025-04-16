@@ -38,7 +38,7 @@ export default function TechStack() {
           </h2>
           <p className="text-gray-500 dark:text-gray-400 md:text-xl">{t("techStack.subtitle")}</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {skills.map((tech, index) => (
             <motion.div
               key={tech}
@@ -57,11 +57,11 @@ export default function TechStack() {
 
 function TechItem({ name }: { name: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 p-4 border rounded-lg hover:shadow-md transition-shadow hover:border-blue-500 bg-white dark:bg-gray-800">
+    <div className="flex flex-col items-center justify-between gap-2 p-4 border rounded-lg hover:shadow-md transition-shadow hover:border-blue-500 bg-white dark:bg-gray-800 w-[160px] ">
       <div className="h-12 w-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800">
         <span className="text-blue-700 dark:text-blue-300 text-xl font-bold">{name.charAt(0)}</span>
       </div>
-      <span className="text-sm font-medium">{name}</span>
+      <span className="text-sm font-medium text-center">{name}</span>
     </div>
   )
 }

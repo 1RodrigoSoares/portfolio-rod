@@ -16,12 +16,14 @@ export default function Projects() {
     {
       title: t("projects.project1.title"),
       content: t("projects.project1.content"),
-      tags: t("projects.project1.tags") as unknown as string[]
+      tags: t("projects.project1.tags") as unknown as string[],
+      type: t("projects.project1.type"), 
     },
     {
       title: t("projects.project2.title"),
       content: t("projects.project2.content"),
-      tags: t("projects.project2.tags") as unknown as string[]
+      tags: t("projects.project2.tags") as unknown as string[],
+      type: t("projects.project2.type"),
     },
   ]
 
@@ -49,12 +51,23 @@ export default function Projects() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2 * index, duration: 0.5 }}
             >
-              <Card className="h-full hover:shadow-md transition-shadow hover:border-blue-500">
-                <CardHeader>
-                  <CardTitle className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
+              <Card className="h-full hover:shadow-md transition-shadow hover:border-blue-500 relative">
+              <div className="flex items-center justify-between">
+                  <CardHeader>
+                    <CardTitle className="bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                      {project.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <Badge
+                    variant="secondary"
+                    className={`${
+                      project.type === "Projeto pessoal" || project.type === "Personal project"
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-blue-500 text-white"
+                    } flex justify-center items-center m-3 max-w-[150px] text-center overflow-hidden text-ellipsis`}>
+                    {project.type}
+                  </Badge>
+              </div>
                 <CardContent className="space-y-2">
                   {project.content.split("\n\n").map((paragraph, i) => (
                     <p key={i} className="text-sm text-gray-500 dark:text-gray-400">
