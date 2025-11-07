@@ -31,3 +31,25 @@ next-env.d.ts
 
 #zip
 *.zip
+
+
+# Infrastructure as Code
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+terraform.tfplan
+terraform.tfstate.backup
+
+# CloudFormation
+*.template
+*.stack
+
+# Ansible
+*.retry
+vault-password
+
+# Pulumi
+Pulumi.*.yaml
+.pulumi/
