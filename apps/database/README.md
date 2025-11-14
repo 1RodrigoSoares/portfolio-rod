@@ -49,4 +49,31 @@ The database data is persisted using Docker volumes. The volume `postgres_data` 
 
 ## Database Schema
 
-Place your SQL schema files in the `init/` directory. They will be executed automatically when the database is first created.
+The database contains the following main tables:
+
+### Core Tables
+- **`personal_info`** - Your personal information (name, email, contact details, CV links)
+- **`skills`** - Technologies and skills with proficiency levels and categories
+- **`projects`** - Portfolio projects with multilingual content
+- **`project_skills`** - Many-to-many relationship between projects and skills
+- **`about_sections`** - About page content in multiple languages
+
+### Analytics Tables
+- **`contact_messages`** - Messages from the contact form
+- **`page_views`** - Basic page view tracking
+
+### Initialization Files
+- **`01-init.sql`** - Main schema and initial data
+- **`02-sample-data.sql`** - Additional sample data for development
+- **`queries.sql`** - Useful queries for development and management
+
+### Key Features
+- **UUID primary keys** for all tables
+- **Multilingual support** (English/Portuguese) for content
+- **Proficiency tracking** for skills with years of experience
+- **Featured flags** to control what appears on the main portfolio
+- **Analytics tracking** for contact forms and page views
+- **Indexes** for performance optimization
+- **Views** for common queries
+
+The schema is designed to support your current portfolio content while being flexible enough for future additions.
