@@ -14,7 +14,13 @@
     "clean": "npm run --workspaces clean",
     "web:dev": "npm run dev --workspace=apps/web",
     "web:build": "npm run build --workspace=apps/web",
-    "web:start": "npm run start --workspace=apps/web"
+    "web:start": "npm run start --workspace=apps/web",
+    "db:dev": "npm run dev --workspace=apps/database",
+    "db:stop": "npm run stop --workspace=apps/database",
+    "db:restart": "npm run restart --workspace=apps/database",
+    "db:logs": "npm run logs --workspace=apps/database",
+    "db:clean": "npm run clean --workspace=apps/database",
+    "db:setup": "npm run setup --workspace=apps/database"
   },
   "devDependencies": {
     "@types/node": "^22",

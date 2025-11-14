@@ -1,0 +1,8 @@
+# Environment file
+.env
+
+# PostgreSQL data
+postgres_data/
+
+# Logs
+*.log
