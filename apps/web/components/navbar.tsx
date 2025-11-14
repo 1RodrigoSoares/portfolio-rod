@@ -3,12 +3,14 @@
 import type React from "react"
 
 import { useLanguage } from "@/components/language-context"
+import { usePersonalInfo } from "@/hooks/use-api"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu } from "lucide-react"
 
 export default function Navbar() {
   const { t, language, toggleLanguage } = useLanguage()
+  const { data: personalInfo } = usePersonalInfo()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -24,7 +26,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:bg-gray-950/95 dark:supports-[backdrop-filter]:bg-gray-950/60">
       <div className="container flex h-16 items-center justify-between px-4 sm:px-6">
         <div className="font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent flex items-center pl-1">
-          <span className="mr-2">☁️</span> Rodrigo Assis
+          <span className="mr-2">☁️</span> {personalInfo?.full_name || "Rodrigo Assis"}
         </div>
 
         <nav className="hidden md:flex gap-6">

@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguage } from "@/components/language-context"
+import { usePersonalInfo } from "@/hooks/use-api"
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload} from "react-icons/fa"
 import { IoCloudDownloadOutline } from "react-icons/io5";
 
@@ -11,10 +12,24 @@ import { motion } from "framer-motion"
 
 export default function Home() {
   const { t, language} = useLanguage()
+  const { data: personalInfo, loading, error } = usePersonalInfo()
 
   const handleDownloadCV = () => {
+    if (personalInfo) {
+      const cvUrl = language === "en" ? personalInfo.cv_url_en : personalInfo.cv_url_pt
+      if (cvUrl) {
+        const link = document.createElement("a")
+        link.href = cvUrl
+        link.download = `CV-${personalInfo.full_name}-${language.toUpperCase()}.pdf`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        return
+      }
+    }
+    
+    // Fallback to static files
     const fileName = language === "en" ? "CV - Rodrigo - English.pdf" : "CV - Rodrigo - Portugues.pdf"
-  
     const link = document.createElement("a")
     link.href = `/${fileName}`
     link.download = fileName
@@ -70,24 +85,30 @@ export default function Home() {
             </Button>
           </div>
           <div className="flex gap-4 justify-center lg:justify-start">
-            <Link href="https://github.com/1RodrigoSoares" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <FaGithub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-            </Link>
-            <Link href="https://www.linkedin.com/in/1rodrigoassis/" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <FaLinkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-            </Link>
-            <Link href="mailto:devrodrigosoares@gmail.com">
-              <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
-                <FaEnvelope className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </Button>
-            </Link>
+            {personalInfo?.github_url && (
+              <Link href={personalInfo.github_url} target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
+                  <FaGithub className="h-5 w-5" />
+                  <span className="sr-only">GitHub</span>
+                </Button>
+              </Link>
+            )}
+            {personalInfo?.linkedin_url && (
+              <Link href={personalInfo.linkedin_url} target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
+                  <FaLinkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </Button>
+              </Link>
+            )}
+            {personalInfo?.email && (
+              <Link href={`mailto:${personalInfo.email}`}>
+                <Button variant="ghost" size="icon" className="rounded-full hover:text-blue-600 dark:hover:text-blue-400">
+                  <FaEnvelope className="h-5 w-5" />
+                  <span className="sr-only">Email</span>
+                </Button>
+              </Link>
+            )}
           </div>
         </motion.div>
 
@@ -99,8 +120,8 @@ export default function Home() {
         >
           <div className="relative aspect-square w-[300px] rounded-full border border-blue-100 dark:border-blue-800 overflow-hidden">
             <Image
-              src="/rodrigo.jpeg?height=400&width=400"
-              alt="Rodrigo Assis"
+              src={personalInfo?.profile_image_url || "/rodrigo.jpeg?height=400&width=400"}
+              alt={personalInfo?.full_name || "Rodrigo Assis"}
               fill
               className="object-cover"
               priority

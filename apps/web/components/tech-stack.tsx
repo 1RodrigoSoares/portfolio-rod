@@ -1,26 +1,24 @@
 "use client"
 
 import { useLanguage } from "@/components/language-context"
+import { useSkills } from "@/hooks/use-api"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
 export default function TechStack() {
   const { t } = useLanguage()
+  const { data: apiSkills, loading, error } = useSkills(true) // Get featured skills only
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-  const skills = [
+  // Fallback skills
+  const fallbackSkills = [
     "Docker",
-    "AWS",
-    "Linux",
-    "Python",
-    "Bash",
-    "Power Automate",
-    "Azure Pipelines",
-    "Datadog",
-    "GitHub Actions",
   ]
+
+  // Use API skills if available, otherwise fallback
+  const skills = apiSkills?.map(skill => skill.name) || fallbackSkills  
 
   return (
     <motion.section
@@ -38,6 +36,19 @@ export default function TechStack() {
           </h2>
           <p className="text-gray-500 dark:text-gray-400 md:text-xl">{t("techStack.subtitle")}</p>
         </div>
+        {loading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
+            <p className="mt-2 text-gray-500 dark:text-gray-400">Loading skills...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="text-center py-8">
+            <p className="text-red-500">Failed to load skills. Showing cached content.</p>
+          </div>
+        )}
+
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {skills.map((tech, index) => (
             <motion.div

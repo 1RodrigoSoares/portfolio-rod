@@ -8,6 +8,7 @@ import TechStack from "@/components/tech-stack"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import ApiStatus from "@/components/api-status"
 import { useEffect } from "react"
 import { initDatadog } from "@/lib/datadog"
 
@@ -34,6 +35,7 @@ export default function Portfolio() {
           </div>
         </main>
         <Footer />
+        <ApiStatus />
       </div>
     </LanguageProvider>
   )

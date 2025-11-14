@@ -1,5 +1,9 @@
+"use client"
+
 import { useState } from "react"
 import { useLanguage } from "@/components/language-context"
+import { usePersonalInfo } from "@/hooks/use-api"
+import { ApiService } from "@/lib/api"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -12,6 +16,7 @@ import { Mail, MapPin, Phone } from "lucide-react"
 
 export default function Contact() {
   const { t } = useLanguage()
+  const { data: personalInfo, loading: personalLoading } = usePersonalInfo()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +25,7 @@ export default function Contact() {
 
   const [sending, setSending] = useState(false)
   const [status, setStatus] = useState<string | null>(null)
+  const [useApiSubmission, setUseApiSubmission] = useState(true)
 
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
@@ -29,10 +35,25 @@ export default function Contact() {
     setFormData({ ...formData, [name]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSending(true)
-  
+
+    // Try API submission first
+    if (useApiSubmission) {
+      try {
+        await ApiService.submitContactMessage(formData)
+        setSending(false)
+        setStatus("Message sent successfully!")
+        setFormData({ name: "", email: "", message: "" })
+        return
+      } catch (error) {
+        console.warn("API submission failed, falling back to EmailJS:", error)
+        setUseApiSubmission(false)
+      }
+    }
+
+    // Fallback to EmailJS
     emailjs
       .sendForm(
         "service_af1ko3j",
@@ -44,6 +65,7 @@ export default function Contact() {
         (response) => {
           setSending(false)
           setStatus("Email sent successfully!")
+          setFormData({ name: "", email: "", message: "" })
         },
         (error) => {
           setSending(false)
@@ -157,35 +179,46 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                {personalLoading ? (
+                  <div className="text-center py-4">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Loading contact info...</p>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                    <p className="font-medium">{t("contact.emailAddress")}</p>
-                  </div>
-                </div>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-4">
+                      <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                        <Mail className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                        <p className="font-medium">{personalInfo?.email || t("contact.emailAddress")}</p>
+                      </div>
+                    </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-blue-600 dark:text-blue-300" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
-                    <p className="font-medium">{t("contact.phone")}</p>
-                  </div>
-                </div>
+                    {personalInfo?.phone && (
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                          <Phone className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
+                          <p className="font-medium">{personalInfo.phone}</p>
+                        </div>
+                      </div>
+                    )}
 
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                    <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-300" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
-                    <p className="font-medium">{t("contact.location")}</p>
-                  </div>
-                </div>
+                    <div className="flex items-center gap-4">
+                      <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
+                        <p className="font-medium">{personalInfo?.location || t("contact.location")}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
           </motion.div>
