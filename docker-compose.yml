@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: portfolio-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./apps/database/init:/docker-entrypoint-initdb.d
+    networks:
+      - portfolio-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-portfolio}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: portfolio-api
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://postgres:123456@postgres:5432/portfolio
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:3001
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=portfolio
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - portfolio-network
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: portfolio-web
+    restart: unless-stopped
+    environment:
+      - API_URL=http://api:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_started
+    networks:
+      - portfolio-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  portfolio-network:
+    driver: bridge
